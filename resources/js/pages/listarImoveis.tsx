@@ -199,7 +199,7 @@ export default function ImoveisPage() {
         imovel.corretor.toLowerCase().includes(termoBusca.toLowerCase())
 
       // Filtro por finalidade
-      const matchFinalidade = !filtros.finalidade || imovel.finalidade === filtros.finalidade
+      const matchFinalidade = !filtros.finalidade || imovel.finalidade.toLowerCase() === filtros.finalidade.toLowerCase()
       // Filtro por valor mínimo
       const matchValorMinimo = !filtros.valorMinimo || imovel.valor >= Number.parseFloat(filtros.valorMinimo)
       // Filtro por valor máximo
