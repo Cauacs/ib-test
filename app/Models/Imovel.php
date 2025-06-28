@@ -22,7 +22,7 @@ class Imovel extends Model
     ];
 
     protected $casts = [
-        'possui_garagem' => 'boolean',
+        'garagem' => 'boolean',
         'valor' => 'decimal:2',
     ];
 }

@@ -71,8 +71,8 @@ class ImovelController extends Controller
             'valor' => 'sometimes|required|numeric|min:0',
             'quartos' => 'sometimes|required|integer|min:0',
             'banheiros' => 'sometimes|required|integer|min:0',
-            'possui_garagem' => 'sometimes|required|boolean',
-            'nome_corretor' => 'sometimes|required|string|max:255',
+            'garagem' => 'sometimes|required|boolean',
+            'corretor' => 'sometimes|required|string|max:255',
         ]);
 
         $imovel->update($validated);
