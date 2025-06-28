@@ -20,8 +20,8 @@ return new class extends Migration
             $table->decimal('valor', 15, 2);
             $table->unsignedTinyInteger('quartos');
             $table->unsignedTinyInteger('banheiros');
-            $table->boolean('possui_garamgem');
-            $table->string('nome_corretor');
+            $table->boolean('garagem');
+            $table->string('corretor');
             $table->timestamps();
         });
     }
