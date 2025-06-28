@@ -167,7 +167,7 @@ export default function ImoveisPage() {
 
   const obterImovel = async (id: string) => {
     try{
-      const imovel = await imovelService.fetchImoveis(id);
+      const imovel = await imovelService.fetchImovel(id);
       return imovel
     }
     catch(err){

@@ -14,6 +14,19 @@ export const fetchImoveis = async (): Promise<Imovel[]> => {
     return response.json();
 };
 
+export const fetchImovel = async(id: string): Promise<Imovel> => {
+    const response = await fetch(`${API_URL}/${id}`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    })
+
+    if(!response.ok) throw new Error("Erro ao carregar imóvel com ID: " + id);
+    return response.json()
+}
+
 
 export const createImovel = async (imovel: Omit<Imovel, "id" | "createdAt">): Promise<Imovel> =>{
     const response = await fetch(API_URL, {
