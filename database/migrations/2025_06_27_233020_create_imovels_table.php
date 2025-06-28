@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('descricao');
             $table->string('endereco');
-            $table->enum('finalidade', ['venda', 'locacao'])->default('locacao');
+            $table->enum('finalidade', ['Venda', 'Locação'])->default('Locação');
             $table->decimal('valor', 15, 2);
             $table->unsignedTinyInteger('quartos');
             $table->unsignedTinyInteger('banheiros');

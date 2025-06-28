@@ -32,7 +32,7 @@ interface FiltrosImoveisProps {
               <SelectContent>
                 <SelectItem value="todas">Todas</SelectItem>
                 <SelectItem value="venda">Venda</SelectItem>
-                <SelectItem value="locacao">Locação</SelectItem>
+                <SelectItem value="Locação">Locação</SelectItem>
               </SelectContent>
             </Select>
           </div>

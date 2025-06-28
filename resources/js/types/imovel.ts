@@ -3,7 +3,7 @@ export interface Imovel {
     titulo: string
     descricao: string
     endereco: string
-    finalidade: "Venda" | "Locacao"
+    finalidade: "Venda" | "Locação"
     valor: number
     quartos: number
     banheiros: number
@@ -16,7 +16,7 @@ export interface Imovel {
     titulo: string
     descricao: string
     endereco: string
-    finalidade: "Venda" | "Locacao"
+    finalidade: "Venda" | "Locação"
     valor: string
     quartos: string
     banheiros: string
