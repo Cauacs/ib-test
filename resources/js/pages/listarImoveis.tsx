@@ -124,21 +124,13 @@ export default function ImoveisPage() {
     setNotifications((prev) => prev.filter((n) => n.id !== id))
   }
 
-/*   // Funções CRUD
-  const adicionarImovel = (novoImovel: Omit<Imovel, "id" | "createdAt">) => {
-    const imovel: Imovel = {
-      ...novoImovel,
-      id: Date.now().toString(),
-      createdAt: new Date(),
-    }
-    setImoveis((prev) => [...prev, imovel])
-  } */
+  // Funções CRUD
 
   const adicionarImovel = async (novoImovel: Omit<Imovel, "id" | "createdAt">) => {
     try{
-      const imovelSalvo = await imovelService.createImovel(novoImovel);
-      setImoveis((prev) => [...prev, imovelSalvo]);
-      return imovelSalvo;
+      const imovel = await imovelService.createImovel(novoImovel);
+      setImoveis((prev) => [...prev, imovel]);
+      return imovel;
     }
     catch(err) {
       addNotification("error", "Falha ao criar imóvel")
@@ -146,19 +138,42 @@ export default function ImoveisPage() {
       throw new Error("Falha ao criar imóvel")
     }
   }
-
-  const editarImovel = (id: string, imovelAtualizado: Omit<Imovel, "id" | "createdAt">) => {
-    setImoveis((prev) =>
-      prev.map((imovel) => (imovel.id === id ? { ...imovelAtualizado, id, createdAt: imovel.createdAt } : imovel)),
-    )
+  const editarImovel = async (id: string, imovelAtualizado: Omit<Imovel, "id" | "createdAt">) => {
+    try{
+      const editedImovel = await imovelService.updateImovel(id, imovelAtualizado);
+      setImoveis((prev) => 
+        prev.map((imovel) => (imovel.id === id ? {...editedImovel, id, createdAt: imovel.createdAt} : imovel))
+      )      
+      return editedImovel;
+    }
+    catch(err) {
+      addNotification("error", "Falha ao atualizar imóvel")
+      console.log(err)
+    }
+    
   }
 
-  const excluirImovel = (id: string) => {
-    setImoveis((prev) => prev.filter((imovel) => imovel.id !== id))
+  const excluirImovel = async (id: string) => {
+    try{
+      await imovelService.deleteImovel(id)
+      setImoveis((prev) => prev.filter((imovel) => imovel.id !== id))
+      addNotification("success", "Imóvel excluido")
+    }
+    catch(err){
+      addNotification("error", "Falha ao excluir imóvel")
+      console.log(err)
+    }
   }
 
-  const obterImovel = (id: string) => {
-    return imoveis.find((imovel) => imovel.id === id)
+  const obterImovel = async (id: string) => {
+    try{
+      const imovel = await imovelService.fetchImoveis(id);
+      return imovel
+    }
+    catch(err){
+      addNotification("error", "Falha em buscar imóvel com id: " + id);
+      console.log(err)
+    }
   }
 
   // Função de filtros
@@ -183,7 +198,7 @@ export default function ImoveisPage() {
   }
 
   // Handlers
-  const handleSubmitForm = (data: ImovelFormData) => {
+  const handleSubmitForm = async (data: ImovelFormData) => {
     try {
       const imovelData = {
         titulo: data.titulo,
@@ -198,10 +213,10 @@ export default function ImoveisPage() {
       }
 
       if (viewMode === "edit" && imovelSelecionado) {
-        editarImovel(imovelSelecionado.id, imovelData)
+        await editarImovel(imovelSelecionado.id, imovelData)
         addNotification("success", "Imóvel editado com sucesso!")
       } else {
-        adicionarImovel(imovelData)
+        await adicionarImovel(imovelData)
         addNotification("success", "Imóvel cadastrado com sucesso!")
       }
 
