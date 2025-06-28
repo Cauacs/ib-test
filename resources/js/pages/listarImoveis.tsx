@@ -1,4 +1,6 @@
-import { useState } from "react"
+import * as imovelService from "@/services/imovelService"
+
+import { useEffect, useState } from "react"
 import { Plus, X, CheckCircle, XCircle, Info } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -23,63 +25,6 @@ interface Notification {
   type: "success" | "error" | "info"
   message: string
 }
-
-// Dados mockados
-const imoveisMockados: Imovel[] = [
-  {
-    id: "1",
-    titulo: "Apartamento Moderno no Centro",
-    descricao: "Lindo apartamento com vista para a cidade, totalmente mobiliado e em excelente localização.",
-    endereco: "Rua das Flores, 123 - Centro, São Paulo - SP",
-    finalidade: "Venda",
-    valor: 450000,
-    quartos: 2,
-    banheiros: 2,
-    garagem: true,
-    corretor: "Maria Silva",
-    createdAt: new Date("2024-01-15"),
-  },
-  {
-    id: "2",
-    titulo: "Casa Familiar em Condomínio",
-    descricao: "Casa espaçosa em condomínio fechado, ideal para famílias. Área de lazer completa.",
-    endereco: "Rua dos Ipês, 456 - Jardim América, São Paulo - SP",
-    finalidade: "Locacao",
-    valor: 3500,
-    quartos: 3,
-    banheiros: 3,
-    garagem: true,
-    corretor: "João Santos",
-    createdAt: new Date("2024-02-10"),
-  },
-  {
-    id: "3",
-    titulo: "Studio Compacto",
-    descricao: "Studio moderno e funcional, perfeito para jovens profissionais. Próximo ao metrô.",
-    endereco: "Av. Paulista, 789 - Bela Vista, São Paulo - SP",
-    finalidade: "Locacao",
-    valor: 2200,
-    quartos: 1,
-    banheiros: 1,
-    garagem: false,
-    corretor: "Ana Costa",
-    createdAt: new Date("2024-03-05"),
-  },
-  {
-    id: "4",
-    titulo: "Cobertura de Luxo",
-    descricao: "Cobertura duplex com terraço gourmet e vista panorâmica da cidade.",
-    endereco: "Rua Augusta, 321 - Consolação, São Paulo - SP",
-    finalidade: "Venda",
-    valor: 1200000,
-    quartos: 4,
-    banheiros: 4,
-    garagem: true,
-    corretor: "Carlos Oliveira",
-    createdAt: new Date("2024-01-20"),
-  },
-]
-
 // Componente de Notificações
 function Notifications({
   notifications,
@@ -132,7 +77,7 @@ function Notifications({
 
 export default function ImoveisPage() {
   // Estados principais
-  const [imoveis, setImoveis] = useState<Imovel[]>(imoveisMockados)
+  const [imoveis, setImoveis] = useState<Imovel[]>([]);
   const [viewMode, setViewMode] = useState<ViewMode>("list")
   const [imovelSelecionado, setImovelSelecionado] = useState<Imovel | null>(null)
   const [imovelDetalhes, setImovelDetalhes] = useState<Imovel | null>(null)
@@ -146,6 +91,21 @@ export default function ImoveisPage() {
     valorMinimo: "",
     valorMaximo: "",
   })
+
+  //Carregar imoveis on mount
+
+  useEffect(()=> {
+    const fetchImoveis = async () => {
+      try{
+        const dados = await imovelService.fetchImoveis();
+        setImoveis(dados);
+      } catch(err){
+        addNotification("error", "Falha ao carregar imóveis");
+      }
+    }
+
+    fetchImoveis();
+  }, [])
 
   // Funções de notificação
   const addNotification = (type: Notification["type"], message: string) => {
@@ -164,7 +124,7 @@ export default function ImoveisPage() {
     setNotifications((prev) => prev.filter((n) => n.id !== id))
   }
 
-  // Funções CRUD
+/*   // Funções CRUD
   const adicionarImovel = (novoImovel: Omit<Imovel, "id" | "createdAt">) => {
     const imovel: Imovel = {
       ...novoImovel,
@@ -172,6 +132,19 @@ export default function ImoveisPage() {
       createdAt: new Date(),
     }
     setImoveis((prev) => [...prev, imovel])
+  } */
+
+  const adicionarImovel = async (novoImovel: Omit<Imovel, "id" | "createdAt">) => {
+    try{
+      const imovelSalvo = await imovelService.createImovel(novoImovel);
+      setImoveis((prev) => [...prev, imovelSalvo]);
+      return imovelSalvo;
+    }
+    catch(err) {
+      addNotification("error", "Falha ao criar imóvel")
+      console.log(err)
+      throw new Error("Falha ao criar imóvel")
+    }
   }
 
   const editarImovel = (id: string, imovelAtualizado: Omit<Imovel, "id" | "createdAt">) => {
