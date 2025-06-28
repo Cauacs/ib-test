@@ -1,0 +1,65 @@
+INSERT INTO imovels (
+    titulo,
+    descricao,
+    endereco,
+    finalidade,
+    valor,
+    quartos,
+    banheiros,
+    possui_garamgem,
+    nome_corretor,
+    created_at,
+    updated_at
+) VALUES
+(
+    'Apartamento Luxo Centro',
+    'Apartamento com vista panorâmica, excelente localização e acabamento premium.',
+    'Rua das Flores, 123, Centro, São Paulo, SP',
+    'venda',
+    1500000.00,
+    3,
+    2,
+    1,
+    'João Silva',
+    NOW(),
+    NOW()
+),
+(
+    'Casa Familiar Bairro Verde',
+    'Casa ampla, com quintal, próxima a escolas e supermercados.',
+    'Av. Brasil, 456, Bairro Verde, Curitiba, PR',
+    'locacao',
+    3500.00,
+    4,
+    3,
+    1,
+    'Maria Souza',
+    NOW(),
+    NOW()
+),
+(
+    'Kitnet Econômica Zona Norte',
+    'Kitnet prática para estudantes ou solteiros.',
+    'Rua Aurora, 789, Zona Norte, Porto Alegre, RS',
+    'locacao',
+    1200.00,
+    1,
+    1,
+    0,
+    'Carlos Pereira',
+    NOW(),
+    NOW()
+),
+(
+    'Cobertura Duplex Vila Olímpia',
+    'Cobertura duplex moderna com área gourmet e piscina privativa.',
+    'Rua Olimpíadas, 321, Vila Olímpia, São Paulo, SP',
+    'venda',
+    2500000.00,
+    4,
+    4,
+    1,
+    'Ana Martins',
+    NOW(),
+    NOW()
+);
