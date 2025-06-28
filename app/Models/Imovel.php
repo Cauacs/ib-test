@@ -17,8 +17,8 @@ class Imovel extends Model
         'valor',
         'quartos',
         'banheiros',
-        'possui_garagem',
-        'nome_corretor',
+        'garagem',
+        'corretor',
     ];
 
     protected $casts = [

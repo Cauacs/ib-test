@@ -29,8 +29,8 @@ class ImovelController extends Controller
             'valor' => 'required|numeric|min:0',
             'quartos' => 'required|integer|min:0',
             'banheiros' => 'required|integer|min:0',
-            'possui_garagem' => 'required|boolean',
-            'nome_corretor' => 'required|string|max:255',
+            'garagem' => 'required|boolean',
+            'corretor' => 'required|string|max:255',
         ]);
 
         $imovel = Imovel::create($validate);

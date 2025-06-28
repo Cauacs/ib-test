@@ -6,8 +6,8 @@ INSERT INTO imovels (
     valor,
     quartos,
     banheiros,
-    possui_garamgem,
-    nome_corretor,
+    garagem,
+    corretor,
     created_at,
     updated_at
 ) VALUES
@@ -60,6 +60,58 @@ INSERT INTO imovels (
     4,
     1,
     'Ana Martins',
+    NOW(),
+    NOW()
+),
+(
+    'Sítio Rústico Interior',
+    'Sítio com pomar, lago e área para criação de animais.',
+    'Rodovia KM 45, Zona Rural, Itapetininga, SP',
+    'venda',
+    800000.00,
+    3,
+    2,
+    1,
+    'Eduardo Costa',
+    NOW(),
+    NOW()
+),
+(
+    'Loft Moderno Centro Histórico',
+    'Loft totalmente reformado em prédio histórico, ideal para investidores.',
+    'Rua do Comércio, 12, Centro Histórico, Salvador, BA',
+    'venda',
+    550000.00,
+    1,
+    1,
+    0,
+    'Fernanda Lima',
+    NOW(),
+    NOW()
+),
+(
+    'Sobrado Geminado Zona Leste',
+    'Sobrado novo com fácil acesso a transporte público.',
+    'Rua das Acácias, 250, Zona Leste, São Paulo, SP',
+    'locacao',
+    4500.00,
+    3,
+    2,
+    1,
+    'Paulo Mendes',
+    NOW(),
+    NOW()
+),
+(
+    'Chácara Espaçosa em Condomínio',
+    'Chácara com piscina, churrasqueira e casa de hóspedes.',
+    'Estrada Municipal, 89, Condomínio Paraíso, Sorocaba, SP',
+    'venda',
+    1200000.00,
+    5,
+    4,
+    1,
+    'Roberta Souza',
     NOW(),
     NOW()
 );
