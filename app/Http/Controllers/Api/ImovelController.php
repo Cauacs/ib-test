@@ -21,7 +21,7 @@ class ImovelController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validate = $request->validate([
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
             'endereco' => 'required|string|max:255',
