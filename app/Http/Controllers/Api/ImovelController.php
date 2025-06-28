@@ -62,7 +62,7 @@ class ImovelController extends Controller
         if(!$imovel){
             return response()->json(['message' => 'Imóvel não encontrado'], 404);
         }
-
+        
         $validated = $request->validate([
             'titulo' => 'sometimes|required|string|max:255',
             'descricao' => 'sometimes|required|string',
