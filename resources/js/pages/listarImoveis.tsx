@@ -115,7 +115,6 @@ export default function ImoveisPage() {
       setOperationloading(true)
       await imovelService.deleteImovel(id);
       setImoveis((prev) => prev.filter((imovel) => imovel.id !== id));
-      addNotification('success', 'Imóvel excluido');
     } catch (err) {
       console.error("Erro ao excluir imóvel: ", err)
       throw err
