@@ -129,14 +129,14 @@ export function ImovelForm({ imovel, onSubmit, onCancel, isEditing = false }: Im
                 <Label htmlFor="finalidade">Finalidade *</Label>
                 <Select
                   value={formData.finalidade}
-                  onValueChange={(value: "Venda" | "Locacao") => handleInputChange("finalidade", value)}
+                  onValueChange={(value: "Venda" | "Locação") => handleInputChange("finalidade", value)}
                 >
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Venda">Venda</SelectItem>
-                    <SelectItem value="Locacao">Locação</SelectItem>
+                    <SelectItem value="Locação">Locação</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

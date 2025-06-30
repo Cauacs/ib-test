@@ -39,7 +39,7 @@ interface ImovelCardProps {
           <div className="space-y-3">
             <div className="text-2xl font-bold text-primary">
               {formatarValor(imovel.valor)}
-              {imovel.finalidade === "Locacao" && <span className="text-sm font-normal">/mês</span>}
+              {imovel.finalidade === "Locação" && <span className="text-sm font-normal">/mês</span>}
             </div>
   
             <div className="flex items-center gap-4 text-sm text-muted-foreground">

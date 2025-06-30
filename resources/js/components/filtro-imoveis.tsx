@@ -10,9 +10,10 @@ interface FiltrosImoveisProps {
     filtros: FiltrosImoveis
     onFiltrosChange: (filtros: FiltrosImoveis) => void
     onLimparFiltros: () => void
+    disabled?: boolean
   }
   
-  export function FiltrosImoveisComponent({ filtros, onFiltrosChange, onLimparFiltros }: FiltrosImoveisProps) {
+  export function FiltrosImoveisComponent({ filtros, onFiltrosChange, onLimparFiltros, disabled }: FiltrosImoveisProps) {
     const handleFiltroChange = (campo: keyof FiltrosImoveis, valor: string) => {
       onFiltrosChange({ ...filtros, [campo]: valor })
     }
@@ -25,14 +26,14 @@ interface FiltrosImoveisProps {
         <CardContent className="space-y-4">
           <div>
             <Label htmlFor="finalidade">Finalidade</Label>
-            <Select value={filtros.finalidade} onValueChange={(value) => handleFiltroChange("finalidade", value)}>
+            <Select value={filtros.finalidade} onValueChange={(value) => handleFiltroChange("finalidade", value)} disabled={disabled}>
               <SelectTrigger>
                 <SelectValue placeholder="Todas" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="todas">Todas</SelectItem>
                 <SelectItem value="venda">Venda</SelectItem>
-                <SelectItem value="locacao">Locação</SelectItem>
+                <SelectItem value="Locação">Locação</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -46,6 +47,7 @@ interface FiltrosImoveisProps {
               value={filtros.valorMinimo}
               onChange={(e) => handleFiltroChange("valorMinimo", e.target.value)}
               placeholder="0,00"
+              disabled={disabled}
             />
           </div>
   
@@ -58,10 +60,11 @@ interface FiltrosImoveisProps {
               value={filtros.valorMaximo}
               onChange={(e) => handleFiltroChange("valorMaximo", e.target.value)}
               placeholder="0,00"
+              disabled={disabled}
             />
           </div>
   
-          <Button onClick={onLimparFiltros} variant="outline" className="w-full bg-transparent">
+          <Button onClick={onLimparFiltros} variant="outline" className="w-full bg-transparent" disabled={disabled}>
             Limpar Filtros
           </Button>
         </CardContent>

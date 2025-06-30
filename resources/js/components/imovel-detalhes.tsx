@@ -42,7 +42,7 @@ interface ImovelDetalhesProps {
   
             <div className="text-3xl font-bold text-primary">
               {formatarValor(imovel.valor)}
-              {imovel.finalidade === "Locacao" && <span className="text-lg font-normal">/mês</span>}
+              {imovel.finalidade === "Locação" && <span className="text-lg font-normal">/mês</span>}
             </div>
   
             <Separator />

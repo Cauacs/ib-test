@@ -8,5 +8,5 @@ use App\Http\Controllers\Api\ImovelController;
 Route::apiResource('imoveis', ImovelController::class);
 
 Route::get('hello', function() {
-    return response()->json(['message' => 'Hello worlde']);
+    return response()->json(['message' => 'Hello World']);
 });

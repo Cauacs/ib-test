@@ -25,7 +25,7 @@ class ImovelController extends Controller
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
             'endereco' => 'required|string|max:255',
-            'finalidade' => 'required|in:venda,locacao',
+            'finalidade' => 'required|in:Venda,Locação',
             'valor' => 'required|numeric|min:0',
             'quartos' => 'required|integer|min:0',
             'banheiros' => 'required|integer|min:0',
@@ -62,17 +62,17 @@ class ImovelController extends Controller
         if(!$imovel){
             return response()->json(['message' => 'Imóvel não encontrado'], 404);
         }
-
+        
         $validated = $request->validate([
             'titulo' => 'sometimes|required|string|max:255',
             'descricao' => 'sometimes|required|string',
             'endereco' => 'sometimes|required|string|max:255',
-            'finalidade' => 'sometimes|required|in:venda,locacao',
+            'finalidade' => 'sometimes|required|in:Venda,Locação',
             'valor' => 'sometimes|required|numeric|min:0',
             'quartos' => 'sometimes|required|integer|min:0',
             'banheiros' => 'sometimes|required|integer|min:0',
-            'possui_garagem' => 'sometimes|required|boolean',
-            'nome_corretor' => 'sometimes|required|string|max:255',
+            'garagem' => 'sometimes|required|boolean',
+            'corretor' => 'sometimes|required|string|max:255',
         ]);
 
         $imovel->update($validated);
